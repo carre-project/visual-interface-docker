@@ -10,7 +10,7 @@ RUN (wget -O /tmp/tomcat7.tar.gz http://www.apache.org/dist/tomcat/tomcat-7/v${T
   mv /opt/apache-tomcat* /opt/tomcat && \
   rm /tmp/tomcat7.tar.gz)
 
-ADD ./run.sh /usr/local/bin/run
+ADD ./run.sh /usr/local/bin
 
 ### to deploy a specific war to ROOT, uncomment the following 2 lines and specify the appropriate .war
 #RUN rm -rf /opt/tomcat/webapps/docs /opt/tomcat/webapps/examples /opt/tomcat/webapps/ROOT
@@ -32,4 +32,4 @@ RUN apt-get install -y git maven apache2
 
 EXPOSE 8080
 EXPOSE 80
-CMD ["/usr/local/bin/run"]
+CMD ["/usr/local/bin/run.sh"]
