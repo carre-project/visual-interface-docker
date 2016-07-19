@@ -10,7 +10,7 @@ RUN (wget -O /tmp/tomcat7.tar.gz http://www.apache.org/dist/tomcat/tomcat-7/v${T
   mv /opt/apache-tomcat* /opt/tomcat && \
   rm /tmp/tomcat7.tar.gz)
 
-ADD ./run.sh /usr/local/bin
+ADD ./run.sh /usr/local/bin/run.sh
 
 ### to deploy a specific war to ROOT, uncomment the following 2 lines and specify the appropriate .war
 #RUN rm -rf /opt/tomcat/webapps/docs /opt/tomcat/webapps/examples /opt/tomcat/webapps/ROOT
@@ -19,17 +19,13 @@ ADD ./run.sh /usr/local/bin
 
 # Install Visual interface
 
-RUN apt-get install -y git maven apache2
-
-# Should be public
-# RUN git clone https://weihuiBeds@bitbucket.org/weihuiBeds/doc_repos_ccgv.git \
-#     && git checkout –b carre \
-#     && cd doc_repos_ccgv \
-#     && mvn clean package -f\
-#     && cp target/Carre.war /var/lib/tomcat7/webapps/ \
-#     && rm -rf /var/lib/tomcat7/webapps/Carre
+ADD ./vi_app.tar.gz /usr/local/
+RUN apt-get install -y git maven \
+    && rm -rf /opt/tomcat/webapps/docs /opt/tomcat/webapps/examples /opt/tomcat/webapps/ROOT \
+    && cd /usr/local/visual-interface \
+    && mvn clean package \
+    && cp target/Carre.war /opt/tomcat7/webapps/ROOT
 
 
 EXPOSE 8080
-EXPOSE 80
 CMD ["/usr/local/bin/run.sh"]
