@@ -1,4 +1,4 @@
-mbentley/tomcat7
+Debian/Tomcat7
 ==================
 
 docker image for tomcat7 (with OpenJDK JRE)
