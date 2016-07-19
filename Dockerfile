@@ -8,7 +8,7 @@ RUN wget -O /tmp/tomcat7.tar.gz http://www.apache.org/dist/tomcat/tomcat-7/v${TO
   cd /opt && \
   tar zxf /tmp/tomcat7.tar.gz && \
   mv /opt/apache-tomcat* /opt/tomcat && \
-  rm /tmp/tomcat7.tar.gz
+  rm /tmp/tomcat7.tar.gz && rm -rf /opt/tomcat/webapps/docs /opt/tomcat/webapps/examples /opt/tomcat/webapps/ROOT
 
 ADD ./run.sh /usr/local/bin/run.sh
 
@@ -19,13 +19,15 @@ ADD ./run.sh /usr/local/bin/run.sh
 
 # Install Visual interface
 
-ADD ./vi_app.tar.gz /usr/local/
-RUN apt-get install -y git maven \
-    && rm -rf /opt/tomcat/webapps/docs /opt/tomcat/webapps/examples /opt/tomcat/webapps/ROOT \
-    && cd /usr/local/visual-interface \
-    && mvn clean package \
-    && cp target/Carre.war /opt/tomcat7/webapps/ROOT
+# ADD ./vi_app.tar.gz /usr/local/
+# RUN apt-get install -y git maven \
+#     && rm -rf /opt/tomcat/webapps/docs /opt/tomcat/webapps/examples /opt/tomcat/webapps/ROOT \
+#     && cd /usr/local/visual-interface \
+#     && mvn clean package \
+#     && cp target/Carre.war /opt/tomcat7/webapps/ROOT
 
+
+VOLUME /opt/tomcat7/webapps/ROOT
 
 EXPOSE 8080
 CMD ["/usr/local/bin/run.sh"]
