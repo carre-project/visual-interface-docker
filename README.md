@@ -1,16 +1,15 @@
-Debian/Tomcat7
+CARRE/visual-interface
 ==================
 
 docker image for tomcat7 (with OpenJDK JRE)
 based off of stackbrew/debian:jessie
 
-Note:  For Tomcat 7 with Oracle JRE, use mbentley/tomcat7-oracle
 
 To pull this image:
-`docker pull mbentley/tomcat7`
+`docker pull carre/visual-interface`
 
 Example usage:
-`docker run -p 8080:8080 -d mbentley/tomcat7`
+`docker run -p 8080:8080 -d carre/visual-interface -v /home/$USER/webapps`
 
 To deploy a specific .war file to ROOT, see the commented out section of the `Dockerfile`.
 

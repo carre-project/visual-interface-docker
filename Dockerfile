@@ -27,7 +27,7 @@ ADD ./run.sh /usr/local/bin/run.sh
 #     && cp target/Carre.war /opt/tomcat7/webapps/ROOT
 
 
-VOLUME /opt/tomcat7/webapps/ROOT
+VOLUME /opt/tomcat7/webapps
 
 EXPOSE 8080
 CMD ["/usr/local/bin/run.sh"]
