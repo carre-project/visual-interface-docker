@@ -11,7 +11,6 @@ RUN wget -O /tmp/tomcat7.tar.gz http://www.apache.org/dist/tomcat/tomcat-7/v${TO
   rm /tmp/tomcat7.tar.gz && rm -rf /opt/tomcat/webapps/docs /opt/tomcat/webapps/examples /opt/tomcat/webapps/ROOT
 
 ADD ./run.sh /usr/local/bin/run.sh
-RUN chmod +x /usr/local/bin/run.sh
 
 ### to deploy a specific war to ROOT, uncomment the following 2 lines and specify the appropriate .war
 #RUN rm -rf /opt/tomcat/webapps/docs /opt/tomcat/webapps/examples /opt/tomcat/webapps/ROOT
@@ -31,4 +30,4 @@ RUN chmod +x /usr/local/bin/run.sh
 VOLUME /opt/tomcat7/webapps
 
 EXPOSE 8080
-CMD ["/usr/local/bin/run.sh"]
+CMD ["bash","/usr/local/bin/run.sh"]
